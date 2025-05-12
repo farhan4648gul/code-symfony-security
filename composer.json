@@ -39,7 +39,7 @@
         "symfony/maker-bundle": "^1.15",
         "symfony/var-dumper": "5.3.*",
         "symfony/web-profiler-bundle": "5.3.*",
-        "zenstruck/foundry": "^1.1"
+        "zenstruck/foundry": "^1.23"
     },
     "config": {
         "preferred-install": {
