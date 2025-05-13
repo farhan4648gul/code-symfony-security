@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -74,6 +75,23 @@ class LoginFormAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
+
+        dump ($exception); 
+
+        $request->getSession()->set(
+            Security::AUTHENTICATION_ERROR, 
+            $exception 
+
+        ); 
+
+        dump($request->getSession()); 
+        dump('here2'); 
+
+        return new RedirectResponse(
+            $this->router->generate('app_login') 
+        ); 
+
+        dd('here'); 
         // TODO: Implement onAuthenticationFailure() method.
     }
 

@@ -4,6 +4,12 @@
 
 {% block body %}
 <div class="container">
+
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey }}
+        </div> 
+    {% endif %}
     <div class="row">
         <div class="login-form bg-light mt-4 p-4">
             <form method="post" class="row g-3">
