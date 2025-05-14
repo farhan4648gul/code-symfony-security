@@ -34,6 +34,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $firstName;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    private $plainPass; 
+
+    public function getPlainPass(): ?string
+    {
+        return $this->plainPass;
+    }
+
+    public function setPlainPass(?string $plainPass): self
+    {
+        $this->plainPass = $plainPass;
+
+        return $this;
+    } 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,8 +109,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
-     *
+     * 
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): ?string
@@ -125,6 +144,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }
