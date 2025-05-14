@@ -10,6 +10,15 @@ use Symfony\UX\Chartjs\Model\Chart;
 
 class AdminController extends AbstractController
 {
+
+    /**
+     * @Route("/admin/login")
+     */
+    public function adminLogin(): Response 
+    {
+        dd('here'); 
+    }
+    
     /**
      * @Route("/admin", name="admin_dashboard")
      */
@@ -53,5 +62,8 @@ class AdminController extends AbstractController
             'chart' => $chart,
             'chart2' => $chart2,
         ]);
-    }
+    } 
+
+
+    
 }
