@@ -48,6 +48,16 @@ class QuestionController extends AbstractController
      */
     public function new()
     {
+
+        dd($this->isGranted('ROLE_USER')) ;
+
+        $this->denyAccessUnlessGranted('ROLE_USER'); 
+
+        if ( !$this->isGranted('ROLE_USER')) {
+            throw $this->createAccessDeniedException('You must be logged in to create a new question.'); 
+        }
+         
+
         return new Response('Sounds like a GREAT feature for V2!');
     }
 
