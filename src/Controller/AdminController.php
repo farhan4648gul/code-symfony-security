@@ -64,6 +64,18 @@ class AdminController extends AbstractController
         ]);
     } 
 
+    /**
+     * @Route("/admin/moderate-comments", name="moderate_comments") 
+     */ 
+    public function moderateComments(): Response 
+    {
+        $this->denyAccessUnlessGranted('ROLE_COMMENTS'); 
+        
+        // Logic to moderate comments
+        return $this->render('admin/moderate_comments.html.twig'); 
+
+    }
+
 
     
 }

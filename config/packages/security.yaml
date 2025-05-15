@@ -1,4 +1,12 @@
 security:
+
+    role_hierarchy: 
+        ROLE_ADMIN: [ROLE_COMMENTS, ROLE_ALLOWED_TO_SWITCH] 
+        # ROLE_COMMENTS: [ROLE_USER] 
+        ROLE_HUMAN_RESOURCES: [ROLE_ADMIN] 
+        
+
+
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -28,6 +36,8 @@ security:
                 signature_properties: [password]  
 
             # entry_point: form_login 
+
+            switch_user: true 
 
 
             # form_login: 
