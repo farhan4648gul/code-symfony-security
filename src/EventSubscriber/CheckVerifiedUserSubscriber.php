@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\UserPassportInterface;
 use Symfony\Component\Security\Http\Event\CheckPassportEvent;
+use Symfony\Component\Security\Http\Event\LoginFailureEvent;
 
 class CheckVerifiedUserSubscriber implements EventSubscriberInterface
 {
@@ -14,8 +15,19 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface
     {
         return [
             CheckPassportEvent::class => ['onCheckPassport', -10] ,
+            LoginFailureEvent::class => 'onLoginFailure', 
         ];
     }
+
+    public function onLoginFailure(LoginFailureEvent $event): void
+    {
+        dump ($event);
+
+        // You can handle login failure here if needed
+        // For example, logging the failure or modifying the response
+    } 
+
+
 
     public function onCheckPassport(CheckPassportEvent $event): void
     {
@@ -33,7 +45,8 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface
         } 
 
         if ( $user->getIsVerified() ) { 
-            throw new CustomUserMessageAuthenticationException('User is not verified (custom message).');  
+            throw new CustomUserMessageAuthenticationException('User is not verified -- my custom exception.'); 
+            // throw new CustomUserMessageAuthenticationException('User is not verified (custom message).');  
             // throw new \Exception(' User is not verified. '); 
         } 
 
