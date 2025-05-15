@@ -43,7 +43,9 @@ final class UserFactory extends ModelFactory
             'email' => self::faker()->email(),
             'firstName' => self::faker()->firstName(), 
             'plainPass' => '123', 
-            // 'password' => $this->passwordHasher->hashPassword('123')  
+            // 'password' => $this->passwordHasher->hashPassword('123') 
+            'isVerified' => true,  
+            
         ];
     }
 
