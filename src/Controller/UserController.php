@@ -12,7 +12,7 @@ class UserController extends AbstractController
 
 
     /**
-      * @Route("/api/me")
+      * @Route("/api/me", name="api_me")
      */ 
     public function apiMe(): Response
     {
