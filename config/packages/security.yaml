@@ -39,6 +39,7 @@ security:
 
             switch_user: true 
 
+            login_throttling: true 
 
             # form_login: 
             #     login_path: app_login 
