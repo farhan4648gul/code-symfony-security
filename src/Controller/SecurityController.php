@@ -15,27 +15,28 @@ class SecurityController extends AbstractController
     public function index(AuthenticationUtils $authenticationUtils, Request $request, Security $security): Response
     {
 
-        dump ( $security ); 
-        dump ( $security->getUser() );  
+        dump($security);
+        dump($security->getUser());
 
-        dump ( $request->getSession() ); 
+        dump($request->getSession());
 
-        // if (  $d = $authenticationUtils->getLastAuthenticationError() ) { 
+        // if (  $d = $authenticationUtils->getLastAuthenticationError() ) {
         //     dd (
 
-        //         $authenticationUtils->getLastAuthenticationError(), 
-        //         $d 
-        //     ); 
-        // } 
+        //         $authenticationUtils->getLastAuthenticationError(),
+        //         $d
+        //     );
+        // }
 
         return $this->render('security/login.html.twig', [
-            'error' => $authenticationUtils->getLastAuthenticationError(), 
-            'last_username' => $authenticationUtils->getLastUsername(), 
-        ]); 
-    } 
+            'error' => $authenticationUtils->getLastAuthenticationError(),
+            'last_username' => $authenticationUtils->getLastUsername(),
+        ]);
+    }
 
-    #[Route('/logout', name: 'app_logout')] 
-    public function logout(): void {
+    #[Route('/logout', name: 'app_logout')]
+    public function logout(): void
+    {
 
     }
 }
