@@ -17,9 +17,27 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+
+
+        UserFactory::createOne([
+            'email' => 'farhan4648gul@gmail.com', 
+            'roles' => ['ROLE_ADMIN'], 
+        ]); 
+
+        UserFactory::createOne([
+            'email' => 'testinguser787@gmail.com'  
+        ]); 
+
+        UserFactory::createMany(10); 
+
+
         TagFactory::createMany(100);
 
-        $questions = QuestionFactory::createMany(20);
+        $questions = QuestionFactory::createMany(20, function(){ 
+            return [
+                'owner' => UserFactory::random()  
+            ]; 
+        });
 
         QuestionTagFactory::createMany(100, function() {
             return [
@@ -45,16 +63,6 @@ class AppFixtures extends Fixture
             ];
         })->needsApproval()->many(20)->create(); 
 
-        UserFactory::createOne([
-            'email' => 'farhan4648gul@gmail.com', 
-            'roles' => ['ROLE_ADMIN'], 
-        ]); 
-
-        UserFactory::createOne([
-            'email' => 'testinguser787@gmail.com'  
-        ]); 
-
-        UserFactory::createMany(10); 
 
         $manager->flush();
     }
